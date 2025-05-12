@@ -1,1 +1,44 @@
-<p>ui works!</p>
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl space-y-4">
+    <h2 class="text-xl font-bold text-blue-600">🧱 Plain JS (nicht reaktiv)</h2>
+    <div class="text-gray-700 space-y-1">
+        <div>a = {{ a }}</div>
+        <div>b = {{ b }}</div>
+        <div class="font-semibold">c = a + b: {{ c }}</div>
+    </div>
+    <button (click)="updateValue()"
+        class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        b = 30 setzen
+    </button>
+</div>
+
+<hr>
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl space-y-4">
+    <h2 class="text-xl font-bold text-orange-600">🔁 RxJS mit detectChanges()
+    </h2>
+    <div class="text-gray-700 space-y-1">
+        <div>a$-value = {{ a$.value }}</div>
+        <div>b$-value = {{ b$.value }}</div>
+        <div class="font-semibold">c = a + b (value after subscription): {{ cValue }}</div>
+    </div>
+    <button (click)="updateRxjsValue()"
+        class="mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">
+        b = 30 setzen
+    </button>
+</div>
+
+<hr>
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl space-y-4">
+    <h2 class="text-xl font-bold text-green-600">✅ Angular Signals (reaktiv ohne
+        Zone)</h2>
+    <div class="text-gray-700 space-y-1">
+        <div>a = {{ aSignal() }}</div>
+        <div>b = {{ bSignal() }}</div>
+        <div class="font-semibold">c = a + b: {{ cSignal() }}</div>
+    </div>
+    <button (click)="bSignal.set(30)"
+        class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+        b = 30 setzen
+    </button>
+</div>

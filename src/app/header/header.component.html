@@ -1,0 +1,39 @@
+<header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div class="text-2xl font-bold text-blue-600">
+            ⚡ Signals Demo
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+            <a routerLink="/ui" routerLinkActive="text-blue-600"
+                class="hover:text-blue-600 transition">Reaktive UI</a>
+            <a routerLink="/components" routerLinkActive="text-blue-600"
+                class="hover:text-blue-600 transition">Komponenten</a>
+            <a routerLink="/performance" routerLinkActive="text-blue-600"
+                class="hover:text-blue-600 transition">Performance</a>
+            <a routerLink="/zoneless" routerLinkActive="text-blue-600"
+                class="hover:text-blue-600 transition">Zone-less</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden text-gray-600" (click)="toggleMenu()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    @if(menuOpen) {
+    <div class="md:hidden bg-white border-t border-gray-200 px-4 py-4">
+        <a routerLink="/ui" class="block py-2">Reaktive UI</a>
+        <a routerLink="/components" class="block py-2">Komponenten</a>
+        <a routerLink="/performance" class="block py-2">Performance</a>
+        <a routerLink="/zoneless" class="block py-2">Zone-less</a>
+    </div>
+    }
+</header>

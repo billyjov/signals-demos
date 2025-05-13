@@ -1,1 +1,55 @@
-<h1>Hello</h1>
+<div class="max-w-3xl mx-auto p-6 space-y-6">
+    <h1 class="text-2xl font-bold">📋 ToDos nach User</h1>
+
+    <div class="space-y-4">
+        <div>
+
+            <span class="block mb-1 font-medium">👤 Benutzer auswählen:</span>
+            <select class="w-full p-2 border rounded" [value]="selectedUserId()"
+                (change)="selectUser($event.target)">
+                <option value="">-- Bitte auswählen --</option>
+                @for(user of users(); track user.id) {
+                <option [value]="user.id">
+                    {{ user.name }}
+                </option>
+                }
+            </select>
+        </div>
+
+        @if(isLoading()) {
+
+        <div class="text-blue-600 font-semibold">
+            Lade
+            ToDos…
+        </div>
+        }
+
+        @if(todos().length) {
+
+
+        <table class="w-full border mt-4 text-sm">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-2 py-1 text-left">ID</th>
+                    <th class="border px-2 py-1 text-left">Titel</th>
+                    <th class="border px-2 py-1 text-left">Erledigt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(todo of todos(); track todo.id) {
+                <tr class="hover:bg-gray-50">
+                    <td class="border px-2 py-1">{{ todo.id }}</td>
+                    <td class="border px-2 py-1">{{ todo.title }}</td>
+                    <td class="border px-2 py-1">
+                        <span [class.text-green-600]="todo.completed"
+                            [class.text-red-600]="!todo.completed">
+                            {{ todo.completed ? 'Ja' : 'Nein' }}
+                        </span>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+</div>

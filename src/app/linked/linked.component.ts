@@ -1,6 +1,7 @@
 import { HttpClient, httpResource } from '@angular/common/http';
 import {
   Component,
+  computed,
   inject,
   linkedSignal,
   resource,
@@ -9,6 +10,8 @@ import {
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule } from '@angular/forms';
 import { User } from '../models/user';
+import { UsersService } from '../services/users.service';
+import { TodosService } from '../services/todos.service';
 
 @Component({
   selector: 'app-linked',
@@ -17,13 +20,25 @@ import { User } from '../models/user';
   styleUrl: './linked.component.css',
 })
 export class LinkedComponent {
-  http = inject(HttpClient);
-  selectedUserId = signal(0);
-  selectedTodoId = signal(0);
+  usersService = inject(UsersService);
+  todosService = inject(TodosService);
 
-  // users = linkedSignal(
-  //   toSignal(this.http.get('https://jsonplaceholder.typicode.com/users'))
-  // );
+  users = this.usersService.users;
+  // Method 1
+  todos = this.todosService.todos;
+  // todos = computed(() => this.todosService.todosResource.value() ?? []);
+  selectedUserId = this.todosService.selectedUserId;
+  isLoading = signal(false);
+
+  http = inject(HttpClient);
+  // selectedUserId = signal(0);
+  // selectedTodoId = signal(0);
+
+  usersS = linkedSignal(
+    toSignal(this.http.get('https://jsonplaceholder.typicode.com/users'))
+  );
+
+  
 
   // users = resource({
   //   loader: () => fetch('https://jsonplaceholder.typicode.com/users'),
@@ -46,8 +61,6 @@ export class LinkedComponent {
   //   parse: (response: any) => response.json(),
   // })
 
-
-
   // user100 = linkedSignal({
   //   source: signal(100),
   //   computation: (source) => {
@@ -57,7 +70,8 @@ export class LinkedComponent {
   //   },
   // });
 
-  control = new FormControl('Anna');
-
-  // Signal ist automatisch mit dem FormControl verbunden
+  selectUser(userEventId: EventTarget | null) {
+    const userId = +(userEventId as HTMLSelectElement).value;
+    this.todosService.setUserId(userId);
+  }
 }

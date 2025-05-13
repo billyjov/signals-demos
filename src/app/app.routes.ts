@@ -5,6 +5,7 @@ import { ComponentListComponent } from './component-list/component-list.componen
 import { UiComponent } from './ui/ui.component';
 import { LinkedComponent } from './linked/linked.component';
 import { PerformanceObservableComponent } from './performance/performance-observable/performance-observable.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 export const appRoutes: Route[] = [
   { path: 'ui', component: UiComponent },
@@ -13,5 +14,6 @@ export const appRoutes: Route[] = [
   { path: 'performance-observable', component: PerformanceObservableComponent },
   { path: 'zoneless', component: ZonelessComponent },
   { path: 'linked', component: LinkedComponent },
+  { path: 'tasks', component: TasksComponent },
   { path: '', redirectTo: 'ui', pathMatch: 'full' },
 ];

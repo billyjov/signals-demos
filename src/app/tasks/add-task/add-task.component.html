@@ -1,0 +1,54 @@
+<div
+    class="mt-6 max-w-2xl mx-auto rounded-2xl shadow-lg border border-gray-200 bg-white">
+    <div class="bg-blue-600 text-white rounded-t-2xl px-6 py-5 text-center">
+        <h4 class="uppercase text-lg font-semibold">Add new task to your todo
+            list :)</h4>
+    </div>
+
+    <div class="p-6">
+        <form [formGroup]="taskForm" (ngSubmit)="submitTaskForm()"
+            class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="title"
+                        class="block text-sm font-medium text-gray-700">Title</label>
+                    <input type="text" formControlName="title"
+                        placeholder="Enter your task title"
+                        class="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        [ngClass]="{ 'border-red-500': isSubmitted && controls['title'].errors }">
+                    @if(isSubmitted && controls['title'].errors) {
+                    <div class="text-red-500 text-sm mt-1">
+                        Please enter a task title.
+                    </div>
+
+                    }
+                </div>
+
+                <div>
+                    <label for="dueDate"
+                        class="block text-sm font-medium text-gray-700">Due
+                        Date</label>
+                    <input type="date" id="dueDate" [min]="getActualDate()"
+                        formControlName="dueDate"
+                        class="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+            </div>
+
+            <input type="text" hidden formControlName="id">
+            <input type="text" hidden formControlName="done">
+
+            <div class="text-center pt-4">
+                <button type="submit"
+                    class="px-6 py-2 font-medium text-white rounded-md transition-colors duration-200"
+                    [ngClass]="{
+            'bg-teal-500 hover:bg-teal-600': isEditMode,
+            'bg-blue-600 hover:bg-blue-700': !isEditMode
+          }">
+                    {{ isEditMode() ? 'Update Task' : 'Create Task' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- {{ hello() }} -->

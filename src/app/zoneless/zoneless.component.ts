@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-zoneless',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './zoneless.component.html',
   styleUrl: './zoneless.component.css'
 })
-export class ZonelessComponent {
+export class ZonelessComponent implements DoCheck {
+  users = [];
+  userId = 0;
 
+  
+  ngDoCheck(): void {
+    console.log('ngDoCheck called');
+  }
 }

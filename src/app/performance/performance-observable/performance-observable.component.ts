@@ -18,12 +18,13 @@ export class PerformanceObservableComponent implements OnInit {
   counter: Signal<number> = signal(0);
 
   subject: BehaviorSubject<number> = new BehaviorSubject(0);
-  subjectSignal = toSignal(this.subject, {
+  subjectSignal = toSignal(this.subject.asObservable(), {
     initialValue: 0,
-    // Important to keep last seen valid value
-    // rejectErrors: true,
+    manualCleanup: true,
   });
 
+  // Important to keep last seen valid value
+  // rejectErrors: true,
   isChildVisible = signal(false);
   hasNewValueVisible = signal(false);
 

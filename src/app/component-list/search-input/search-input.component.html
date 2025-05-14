@@ -1,0 +1,13 @@
+<div class="max-w-md mx-auto mt-10">
+    <label class="block mb-2 text-sm font-medium text-gray-700" for="search">
+        Search Users
+    </label>
+    <input id="search" type="text" [(ngModel)]="searchTerm"
+        placeholder="Type a name..."
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" />
+
+    <p class="mt-4 text-sm text-gray-600">
+        Current search term:
+        <span class="font-semibold text-indigo-600">{{ searchTerm }}</span>
+    </p>
+</div>

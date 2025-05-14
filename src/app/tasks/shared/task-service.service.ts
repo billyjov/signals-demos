@@ -88,7 +88,9 @@ export class TaskServiceService {
           })
         ),
       {
-        injector: this.injector,
+        // injector: this.injector,
+        // 
+        // manualCleanup: true
       }
     );
   }
@@ -101,7 +103,7 @@ export class TaskServiceService {
     // );
     // DONT USE RESOURCE API TO MUTATE DATA
     // THIS IS ONLY FOR DEMO PURPOSE
-    
+
     const deleteRes = httpResource(
       {
         url: `${this.baseUrl}/api/tasks/${taskId()}`,

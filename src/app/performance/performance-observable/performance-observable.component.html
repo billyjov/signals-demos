@@ -1,4 +1,55 @@
-<div class="max-w-4xl mx-auto p-6 space-y-6">
+<div class="max-w-2xl mx-auto p-6 space-y-6">
+    <h2 class="text-3xl font-bold text-green-700">
+        Counter Demo with Observables + toSignal
+    </h2>
+
+    <!-- Controls Section -->
+    <div class="flex flex-wrap gap-4">
+        <button (click)="toggleChild()"
+            class="px-5 py-2.5 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+            Toggle Child
+        </button>
+
+        <button (click)="increment()"
+            class="px-5 py-2.5 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+            Increment Counter
+        </button>
+
+        <button (click)="createError()"
+            class="px-5 py-2.5 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
+            Create Error
+        </button>
+
+        <button (click)="toggleValueVisibility()"
+            class="px-5 py-2.5 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            Toggle Value Visibility
+        </button>
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-t border-gray-300" />
+
+    <!-- Child Component Display -->
+    @if (isChildVisible()) {
+    <div class="mt-4 p-4 border border-green-200 rounded bg-green-50">
+        <app-child-obs />
+    </div>
+    }
+
+    <!-- Subject Value Output -->
+    <div class="mt-4 text-lg font-medium text-gray-800">
+        Current Value: {{ subjectSignal() }}
+    </div>
+
+    @if (hasNewValueVisible()) {
+    <div class="mt-2 text-sm text-gray-500 italic">
+        New Value: {{ subjectSignal() }}
+    </div>
+    }
+</div>
+
+
+<!-- <div class="max-w-4xl mx-auto p-6 space-y-6">
     <h2 class="text-2xl font-bold text-green-700">
         Performance-Demo mit Signals + toSignal
     </h2>
@@ -13,4 +64,4 @@
         <app-item-box [item]="item" />
         }
     </div>
-</div>
+</div> -->

@@ -5,6 +5,7 @@ import {
   signal,
   effect,
   linkedSignal,
+  resource,
 } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { EMPTY, Observable } from 'rxjs';
@@ -20,23 +21,40 @@ export class TodosService {
   selectedUserId = signal<number | undefined>(undefined);
 
   // Method 1- effect
-  myEffect = effect(() => {
-    const userId = this.selectedUserId();
-    if (userId) {
-      this.getTodos(userId).subscribe((todos) => {
-        this.todos.set(todos);
-      });
-    }
-  });
+  // myEffect = effect(() => {
+  //   const userId = this.selectedUserId();
+  //   if (userId) {
+  //     this.getTodos(userId).subscribe((todos) => {
+  //       this.todos.set(todos);
+  //     });
+  //   }
+  // });
 
   // Method 2- rxResource
 
+  // todosResource = resource({
+  //   request: () => ({
+  //     userId: this.selectedUserId(),
+  //   }),
+  //   loader: ({ request, abortSignal }) => {
+  //     const userId = request.userId;
+  //     if (userId) {
+  //       return fetch(
+  //         `https://jsonplaceholder.typicode.com/users/${userId}/todos`, {
+  //           // signal: abortSignal,
+  //         }
+  //       );
+  //     }
+  //     return Promise.resolve(new Response());
+  //   },
+  // });
+
+  // Method 3- rxResource
   // todosResource = rxResource({
   //   request: () => ({
   //     userId: this.selectedUserId(),
   //   }),
   //   loader: ({ request }) => {
-      
   //     const userId = request.userId;
   //     if (userId) {
   //       return this.http.get<Todo[]>(
